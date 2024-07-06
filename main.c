@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:50:28 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/06 11:46:40 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/06 17:57:27 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,10 @@ void init_threads(t_data *data,int ac,char **av)
 // }
 void *routin(void *arg)
 {
- 
     t_philo *philo = (t_philo *)arg;
     pthread_mutex_lock(&mutex);
     printf("hi-->**%d\n", philo->id);
-     pthread_mutex_unlock(&mutex);
+    pthread_mutex_unlock(&mutex);
     return NULL;
 }
 void creat_threads(t_data *data)
