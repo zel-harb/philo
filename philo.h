@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:43:52 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/05 20:18:43 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/06 09:40:54 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_philo
     int     last_to_eat;
     int     num_philo;
     pthread_mutex_t *fork;
+       pthread_mutex_t mutex;
     
 } t_philo;
 
