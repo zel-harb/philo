@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:43:52 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/06 23:50:13 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/08 01:41:41 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 #include <pthread.h>
+#include <sys/time.h>
 
 typedef struct s_philo
 {
@@ -44,6 +45,7 @@ typedef struct s_data
      
      // philo id 3 : right -> fork[3] 
      // philo id 3 : left  -> fork[0] 
+     int die;
     pthread_mutex_t lock;
     t_philo         *philo;
 } t_data;
