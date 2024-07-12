@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:43:52 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/08 01:41:41 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/12 05:15:42 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 typedef struct s_philo
 {
     pthread_t thread;
-    //int     id;
+    int     id;
     int     l_fork;
     int     r_fork;
-    int     last_to_eat;
+    int    last_to_eat;
     
     pthread_mutex_t *fork; // left + right
 }   t_philo;
@@ -45,8 +45,10 @@ typedef struct s_data
      
      // philo id 3 : right -> fork[3] 
      // philo id 3 : left  -> fork[0] 
-     int die;
-    pthread_mutex_t lock;
+     int  die;
+     int id_philo;//id_philo;
+     pthread_mutex_t lock_id_philo;
+    pthread_mutex_t lock_dead;
     t_philo         *philo;
 } t_data;
 
