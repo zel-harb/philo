@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:43:52 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/12 05:15:42 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/13 23:55:08 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct s_philo
     int     l_fork;
     int     r_fork;
     int    last_to_eat;
+    int     time_eat;
+    int     time_to_sleep;
     
     pthread_mutex_t *fork; // left + right
 }   t_philo;
