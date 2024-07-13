@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:50:28 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/13 01:32:36 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/13 03:04:33 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,19 +84,20 @@ void ft_usleep(size_t milliseconds)
 void eating(t_data *data)
 {
     int i;
-    i = data->id_philo;
-     printf("philosopher %d has taken a fork\n",i);
+    i = data->philo[data->id_philo].id;
     pthread_mutex_lock(&data->forks[data->philo[i].r_fork]);
     printf("philosopher %d has taken a fork\n",i);
-    pthread_mutex_lock(&data->forks[data->philo[i].l_fork]);
+    // pthread_mutex_lock(&data->forks[data->philo[i].l_fork]);
     printf("philosopher %d has taken a fork\n",i);
     //pthread_mutex_lock(&data->philo[i].last_to_eat);
+      
     data->philo[i].last_to_eat = get_time() + data->time_eat;
     printf("philosopher %d is eating\n",i);
     ft_usleep(data->time_eat);
+    data->philo[data->id_philo].id ++;
     //pthread_mutex_unlock(&data->philo[i].last_to_eat);
     pthread_mutex_unlock(&data->forks[data->philo[i].r_fork]);
-    pthread_mutex_unlock(&data->forks[data->philo[i].l_fork]);
+    // pthread_mutex_unlock(&data->forks[data->philo[i].l_fork]);
 }
 void sleep_t(t_data *data )
 {
@@ -110,28 +111,10 @@ void thinking(t_data *data )
 void *routin1(void *arg)
 {
     t_data *data = (t_data *)arg;
-    pthread_mutex_lock(&mutex);
+    pthread_mutex_lock(&data->lock_dead);
     printf("hi-->**%d\n", data->num_philo);
      eating(data);
-    pthread_mutex_unlock(&mutex);
-    // eating(data);
-    // while(data->die == 0)
-    // {
-    //     eating(data);
-    //     sleep_t(data);
-    //     thinking(data);
-    //     pthread_mutex_lock(&data->lock_dead);
-    //     printf("hi\n");
-    //     if(get_time() - data->philo[data->id_philo].last_to_eat > data->time_die)
-    //     {
-    //         data->die = 1;
-    //         printf("philosopher %d died\n",data->id_philo);
-    //         pthread_mutex_unlock(&data->lock_dead);
-    //         return NULL ;
-    //     }
-    //    pthread_mutex_unlock(&data->lock_dead);
-    // }
-   // printf("gbb\n");
+    pthread_mutex_unlock(&data->lock_dead);
     
     return NULL;
 }
@@ -145,26 +128,28 @@ void creat_threads(t_data *data)
     int i;
 
     i = 0;
-    // while(i < data->num_philo)
-    // {
+    while(i < data->num_philo)
+    {
         pthread_create(&data->philo[i].thread,NULL,&routin1,data);
-    //     i++;
-    // }
-    // i = 0;
+        //   pthread_create(&data->philo[i+1].thread,NULL,&routin1,data);
+        i++;
+    }
+    i = 0;
     
-    // while(i < data->num_philo)
-    // {
-    //     printf("he\n");
+    while(i < data->num_philo)
+    {
+        printf("he\n");
          
          //pthread_mutex_lock(&data->lock_id_philo);
-         pthread_join(data->philo[i].thread, NULL) ;
-        // //  data->id_philo = i;
-        //  i++;
+          pthread_join(data->philo[i].thread, NULL) ;
+        
+        //  data->id_philo = i;
+         i++;
         // if(i == data->num_philo)
         // {
         //        printf("hei,%d\n",i);
         //     i = 0;
-        // }
+        }
        //pthread_mutex_unlock(&data->lock_id_philo);
       
         
