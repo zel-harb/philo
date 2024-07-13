@@ -18,6 +18,7 @@ void *print()
     printf("hello\n");
     return NULL;
 }
+
 void init_threads(t_data *data,int ac,char **av)
 {
    int i;
