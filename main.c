@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:50:28 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/12 06:01:22 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/13 01:32:36 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void eating(t_data *data)
 {
     int i;
     i = data->id_philo;
+     printf("philosopher %d has taken a fork\n",i);
     pthread_mutex_lock(&data->forks[data->philo[i].r_fork]);
     printf("philosopher %d has taken a fork\n",i);
     pthread_mutex_lock(&data->forks[data->philo[i].l_fork]);
@@ -109,26 +110,28 @@ void thinking(t_data *data )
 void *routin1(void *arg)
 {
     t_data *data = (t_data *)arg;
-    // pthread_mutex_lock(&mutex);
-    // printf("hi-->**%d\n", data->num_philo);
-    // pthread_mutex_unlock(&mutex);
+    pthread_mutex_lock(&mutex);
+    printf("hi-->**%d\n", data->num_philo);
+     eating(data);
+    pthread_mutex_unlock(&mutex);
+    // eating(data);
     // while(data->die == 0)
     // {
-        // eating(data);
-        // sleep_t(data);
-        // thinking(data);
-        //pthread_mutex_lock(&data->lock_dead);
-        // printf("hi\n");
-        // if(get_time() - data->philo[data->id_philo].last_to_eat > data->time_die)
-        // {
-        //     data->die = 1;
-        //     printf("philosopher %d died\n",data->id_philo);
-        //     pthread_mutex_unlock(&data->lock_dead);
-        //     return NULL ;
-        // }
-       // pthread_mutex_unlock(&data->lock_dead);
+    //     eating(data);
+    //     sleep_t(data);
+    //     thinking(data);
+    //     pthread_mutex_lock(&data->lock_dead);
+    //     printf("hi\n");
+    //     if(get_time() - data->philo[data->id_philo].last_to_eat > data->time_die)
+    //     {
+    //         data->die = 1;
+    //         printf("philosopher %d died\n",data->id_philo);
+    //         pthread_mutex_unlock(&data->lock_dead);
+    //         return NULL ;
+    //     }
+    //    pthread_mutex_unlock(&data->lock_dead);
     // }
-    printf("gbb\n");
+   // printf("gbb\n");
     
     return NULL;
 }
@@ -142,28 +145,40 @@ void creat_threads(t_data *data)
     int i;
 
     i = 0;
-    while(i < data->num_philo)
-    {
-        pthread_create(&data->philo[i].thread,NULL,&routin,NULL);
-        i++;
-    }
-    i = 0;
-    while(i < data->num_philo)
-    {
-        printf("he\n");
+    // while(i < data->num_philo)
+    // {
+        pthread_create(&data->philo[i].thread,NULL,&routin1,data);
+    //     i++;
+    // }
+    // i = 0;
+    
+    // while(i < data->num_philo)
+    // {
+    //     printf("he\n");
+         
+         //pthread_mutex_lock(&data->lock_id_philo);
          pthread_join(data->philo[i].thread, NULL) ;
-        pthread_mutex_lock(&data->lock_id_philo);
-         data->id_philo = i;
-       pthread_mutex_unlock(&data->lock_id_philo);
+        // //  data->id_philo = i;
+        //  i++;
+        // if(i == data->num_philo)
+        // {
+        //        printf("hei,%d\n",i);
+        //     i = 0;
+        // }
+       //pthread_mutex_unlock(&data->lock_id_philo);
       
-        i++;
-        if(i == data->num_philo)
-        {
-               printf("he\n");
-            i = 0;
-        }
-    }
+        
+    // }
 }
+// void creat_treads(t_data *data)
+// {
+//     int i;
+//     i = 0;
+//     while(i < data->num_philo)
+//     {
+//         pthread_create(data->philo[i].thread,NULL,&routin,)
+//     }
+// }
 
 int main(int ac,char **av)
 {
@@ -172,16 +187,16 @@ int main(int ac,char **av)
     init_threads(&data,ac,av);
     get_forks(&data);
     int i = 0;
-    while(i <data.num_philo)
-    {
-        printf("---------------------------------------------\n");
-        printf("right philo [%d]---> %d \n",i , data.philo[i].r_fork);
-        printf("left philo [%d]---> %d \n",i , data.philo[i].l_fork);
-        i ++;
-    }
-    ft_usleep((size_t)data.time_sleep);
+    // while(i <data.num_philo)
+    // {
+    //     printf("---------------------------------------------\n");
+    //     printf("right philo [%d]---> %d \n",i , data.philo[i].r_fork);
+    //     printf("left philo [%d]---> %d \n",i , data.philo[i].l_fork);
+    //     i ++;
+    // }
+    // ft_usleep((size_t)data.time_sleep);
      //printf("hi\n");
-    printf("get_time %zu\n",get_time());
+    // printf("get_time %zu\n",get_time());
     creat_threads(&data);
     return 0;
 }
