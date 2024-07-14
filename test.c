@@ -13,6 +13,7 @@ void* routine() {
         mails++;
       //  pthread_mutex_unlock(&mutex);
         // read mails
+         
         // increment
         // write mails
     }
