@@ -25,7 +25,6 @@ void init_threads(t_data *data,int ac,char **av)
         data->philo[i].time_die = ft_atoi(av[2]);
         data->philo[i].time_eat= ft_atoi(av[3]);
         data->philo[i].time_sleep= ft_atoi(av[4]);
-        
         data->philo[i].last_time_eat = 0;
         i++;
     }
