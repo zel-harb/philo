@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 01:18:22 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/17 02:11:26 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/17 01:39:32 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,8 @@ void *routin(void *arg)
 {
     t_philo *philo;
     philo = (t_philo *)arg;
-    // while(0)
-    // {
-        
     eating(philo);
     sleeping(philo);
     thinking(philo);
-    
-    // }
     return NULL;
 }

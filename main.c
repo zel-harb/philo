@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:34:49 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/17 02:14:01 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/17 01:37:31 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,11 @@ void get_forks(t_data *data)
    i = 0;
    while(i < data->num_philo)
    {
-        // data->philo[i].r_fork= &data->forks[i];
-        //  if(i  == data->num_philo - 1)
-        //     data->philo[i].l_fork = &data->forks[0];
-        // else 
-        //     data->philo[i].l_fork = &data->forks[i +1];
-        if(i  == data->num_philo - 1)
-        {
-            data->philo[i].l_fork = &data->forks[i];
-            data->philo[i].r_fork = &data->forks[0];
-        }
-        else
-        {
-            data->philo[i].r_fork= &data->forks[i];
+        data->philo[i].r_fork= &data->forks[i];
+         if(i  == data->num_philo - 1)
+            data->philo[i].l_fork = &data->forks[0];
+        else 
             data->philo[i].l_fork = &data->forks[i +1];
-        }
         i ++;
         
     } 
@@ -77,13 +67,6 @@ void creat_threads(t_data *data)
         pthread_create(&data->philo[i].thread,NULL,&routin,&data->philo[i]);
         i++;
     }
-    // while(1)
-    // {
-    //     if(die(das)  == 0)
-    //         break;
-
-
-    // } 
     i = 0;
     while(i < data->num_philo)
     {
