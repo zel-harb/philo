@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 17:43:52 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/13 23:55:08 by zel-harb         ###   ########.fr       */
+/*   Created: 2024/07/16 14:34:41 by zel-harb          #+#    #+#             */
+/*   Updated: 2024/07/17 01:17:57 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,30 @@
 #include <pthread.h>
 #include <sys/time.h>
 
+void    check_arg(int ac,char **av);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+int	    ft_strlen(char const *s);
+int     ft_atoi(const char *str);
+void *routin(void *arg);
+
 typedef struct s_philo
 {
-    pthread_t thread;
-    int     id;
-    int     l_fork;
-    int     r_fork;
-    int    last_to_eat;
-    int     time_eat;
-    int     time_to_sleep;
+   pthread_t thread;
+   int      id_philo;
+   int     time_eat;
+   int     time_die;
+   int     time_sleep;
+   int      dead;
+   int      last_time_eat;
+   
+   pthread_mutex_t *r_fork;
+   pthread_mutex_t *l_fork;
     
-    pthread_mutex_t *fork; // left + right
-}   t_philo;
-
+} t_philo;
 typedef struct s_data
 {
     int     num_philo;
-    int     time_eat;
-    int     time_die;
-    int     time_sleep;
     pthread_mutex_t *forks;  // {0, 1, 2, 3}
      // philo id 0  :  right -> forks[0] 
      // philo id 0  :  left  -> forks[1] 
@@ -47,17 +52,6 @@ typedef struct s_data
      
      // philo id 3 : right -> fork[3] 
      // philo id 3 : left  -> fork[0] 
-     int  die;
-     int id_philo;//id_philo;
-     pthread_mutex_t lock_id_philo;
-    pthread_mutex_t lock_dead;
-    t_philo         *philo;
-} t_data;
-
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-int	    ft_strlen(char const *s);
-void    check_arg(int ac,char **av);
-int	    ft_atoi(const char *str);
-
+    t_philo *philo;
+} t_data;     
 #endif
