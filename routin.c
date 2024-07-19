@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 01:18:22 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/17 01:39:32 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/19 00:48:05 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void ft_usleep(size_t milliseconds)
 }
 void eating(t_philo *philo)
 {
-    if(philo->id_philo % 2 != 0)
-        ft_usleep(100);
+    
     pthread_mutex_lock(philo->r_fork);
     pthread_mutex_lock(philo->l_fork);
     printf("philosopher %d has taken a fork\n",philo->id_philo);
     printf("philosopher %d is eating\n",philo->id_philo);
     ft_usleep(philo->time_eat);
+    philo->last_time_eat = get_time();
     pthread_mutex_unlock(philo->r_fork);
     pthread_mutex_unlock(philo->l_fork);
 }
@@ -54,8 +54,14 @@ void *routin(void *arg)
 {
     t_philo *philo;
     philo = (t_philo *)arg;
-    eating(philo);
-    sleeping(philo);
-    thinking(philo);
+    if(philo->id_philo % 2 != 0)
+        ft_usleep(100);
+    while(*philo->dead == 0)
+    {  
+        eating(philo);
+        sleeping(philo);
+        thinking(philo);
+    }
+    
     return NULL;
 }
