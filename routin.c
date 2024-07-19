@@ -18,7 +18,7 @@ size_t get_time()
     size_t milliseconds;
      
     if (gettimeofday(&time, NULL) != 0) {
-        printf("Error\n");
+        printf ("Error\n");
         return 0;
     }
     milliseconds = (size_t)((time.tv_sec) * 1000 + (time.tv_usec) / 1000);
