@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:34:49 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/19 00:57:01 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/20 03:15:20 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void init_threads(t_data *data,int ac,char **av)
         data->philo[i].time_eat= ft_atoi(av[3]);
         data->philo[i].time_sleep= ft_atoi(av[4]);
         data->philo[i].dead = &data->dead;
-        data->philo[i].last_time_eat = 0;
+        data->philo[i].data = data;
+        // data->philo[i].last_time_eat = 0;
         i++;
     }
 }
@@ -71,6 +72,9 @@ void creat_threads(t_data *data)
     i = 0;
     while(i < data->num_philo)
     {
+        pthread_mutex_lock(&data->philo[i].last_ate_mutex);
+        data->philo[i].last_time_eat = get_time();
+        pthread_mutex_lock(&data->philo[i].last_ate_mutex);
         pthread_create(&data->philo[i].thread,NULL,&routin,&data->philo[i]);
         i++;
     }
@@ -86,12 +90,12 @@ void creat_threads(t_data *data)
 
 
     // } 
-    i = 0;
-    while(i < data->num_philo)
-    {
-        pthread_join(data->philo[i].thread, NULL) ;
-        i++;
-    }
+    // i = 0;
+    // while(i < data->num_philo)
+    // {
+    //     pthread_join(data->philo[i].thread, NULL) ;
+    //     i++;
+    // }
 }
 
 

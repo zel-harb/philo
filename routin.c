@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 01:18:22 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/19 00:48:05 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/20 03:43:53 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t get_time()
     size_t milliseconds;
      
     if (gettimeofday(&time, NULL) != 0) {
-        printf ("Error\n");
+        printf("Error\n");
         return 0;
     }
     milliseconds = (size_t)((time.tv_sec) * 1000 + (time.tv_usec) / 1000);
@@ -26,20 +26,41 @@ size_t get_time()
 }
 void ft_usleep(size_t milliseconds)
 {
-    usleep(milliseconds);
-    return;
-}
-void eating(t_philo *philo)
-{
+    size_t start;
     
+    start = get_time();
+    while ((get_time() - start) < milliseconds)
+		usleep(500);
+}
+int  eating(t_philo *philo)
+{
+    if(philo->data->dead == 1)
+    {
+        // pthread_mutex_unlock(philo->r_fork);
+        // pthread_mutex_unlock(philo->l_fork);
+        return 0;
+    }
     pthread_mutex_lock(philo->r_fork);
     pthread_mutex_lock(philo->l_fork);
     printf("philosopher %d has taken a fork\n",philo->id_philo);
     printf("philosopher %d is eating\n",philo->id_philo);
-    ft_usleep(philo->time_eat);
+      if(philo->data->dead == 1)
+    {
+         pthread_mutex_unlock(philo->r_fork);
+        pthread_mutex_unlock(philo->l_fork);
+        return 0;
+    }
     philo->last_time_eat = get_time();
+    ft_usleep(philo->time_eat);
+    if(philo->data->dead == 1)
+    {
+         pthread_mutex_unlock(philo->r_fork);
+        pthread_mutex_unlock(philo->l_fork);
+        return 0;
+    }
     pthread_mutex_unlock(philo->r_fork);
     pthread_mutex_unlock(philo->l_fork);
+    
 }
 void sleeping(t_philo *philo )
 {
