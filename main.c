@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:34:49 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/20 03:15:20 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/22 01:29:03 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void init_forks(t_data *data)
         pthread_mutex_init(&data->forks[i],NULL);
         i++;
     }
+    pthread_mutex_init(&data->died,NULL);
+    
 }
 
 void get_forks(t_data *data)
@@ -74,7 +76,7 @@ void creat_threads(t_data *data)
     {
         pthread_mutex_lock(&data->philo[i].last_ate_mutex);
         data->philo[i].last_time_eat = get_time();
-        pthread_mutex_lock(&data->philo[i].last_ate_mutex);
+        pthread_mutex_unlock(&data->philo[i].last_ate_mutex);
         pthread_create(&data->philo[i].thread,NULL,&routin,&data->philo[i]);
         i++;
     }
@@ -97,7 +99,48 @@ void creat_threads(t_data *data)
     //     i++;
     // }
 }
+int check_philo_die(t_philo * philo)
+{
+    size_t time_to_die;
+    size_t last_ate;
+    
+    time_to_die = philo->time_die;
+    last_ate = get_time() - philo->last_time_eat;
+    return(time_to_die - last_ate);
+}
 
+int monitor(t_data *data)
+{
+    int i;
+    
+    while(1)
+    {
+       i = 0;
+       while (i < data->num_philo)
+       {
+            if(check_philo_die(&data->philo[i]) < 0)
+            {
+                printf("%lu philo %d died \n",get_time()-data->start_time,data->philo[i].id_philo);
+                pthread_mutex_lock(&data->died);
+                data->dead = 1;
+                pthread_mutex_unlock(&data->died);
+                return(1);
+            }
+            i++;
+       } 
+    }
+}
+void	join_threads(t_data *data)
+{
+    int i;
+    
+    i = 0;
+     while(i < data->num_philo)
+    {
+        pthread_join(data->philo[i].thread, NULL) ;
+        i++;
+    }
+}
 
 int main(int ac,char **av)
 {
@@ -107,7 +150,11 @@ int main(int ac,char **av)
     init_threads(&data,ac,av);
     init_forks(&data);
     get_forks(&data);
+    data.start_time = get_time();
     creat_threads(&data);
+    monitor(&data);
+    join_threads(&data);
+    
     // while(0)
     // {
     //     printf("hiii\n");

@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 01:18:22 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/20 03:43:53 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/22 01:37:14 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,20 @@ void ft_usleep(size_t milliseconds)
 int  eating(t_philo *philo)
 {
     if(philo->data->dead == 1)
-    {
-        // pthread_mutex_unlock(philo->r_fork);
-        // pthread_mutex_unlock(philo->l_fork);
         return 0;
-    }
     pthread_mutex_lock(philo->r_fork);
     pthread_mutex_lock(philo->l_fork);
+     if(philo->data->dead == 1)
+    {
+        pthread_mutex_unlock(philo->r_fork);
+        pthread_mutex_unlock(philo->l_fork);
+        return 0;
+    }
     printf("philosopher %d has taken a fork\n",philo->id_philo);
     printf("philosopher %d is eating\n",philo->id_philo);
       if(philo->data->dead == 1)
     {
-         pthread_mutex_unlock(philo->r_fork);
+        pthread_mutex_unlock(philo->r_fork);
         pthread_mutex_unlock(philo->l_fork);
         return 0;
     }
@@ -60,16 +62,28 @@ int  eating(t_philo *philo)
     }
     pthread_mutex_unlock(philo->r_fork);
     pthread_mutex_unlock(philo->l_fork);
+    return 1;
     
 }
-void sleeping(t_philo *philo )
+int  sleeping(t_philo *philo )
 {
+    if(philo->data->dead == 1)
+        return 0;
     printf("philosopher %d is sleeping\n",philo->id_philo);
-    ft_usleep(philo->time_sleep); 
+    ft_usleep(philo->time_sleep);
+     if(philo->data->dead == 1)
+        return 0;
+    return (1);
 }
-void thinking(t_philo *philo)
+int thinking(t_philo *philo)
 {
+    if(philo->data->dead == 1)
+        return 0;
+        ft_usleep(1);
      printf("philosopher %d is thinking\n",philo->id_philo);
+     if(philo->data->dead == 1)
+        return 0;
+    return 1;
 }
 void *routin(void *arg)
 {
@@ -77,11 +91,16 @@ void *routin(void *arg)
     philo = (t_philo *)arg;
     if(philo->id_philo % 2 != 0)
         ft_usleep(100);
-    while(*philo->dead == 0)
+    while(1)
     {  
-        eating(philo);
-        sleeping(philo);
-        thinking(philo);
+       if( eating(philo) == 0)
+            return NULL;
+        if(sleeping(philo) == 0)
+            return NULL;
+        if(thinking(philo) == 0)
+            return NULL;
+        if(philo->data->dead == 1)
+            return NULL;
     }
     
     return NULL;
