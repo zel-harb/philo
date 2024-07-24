@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:34:41 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/22 01:26:03 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/22 23:54:51 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_data
 {
     int     num_philo;
     int     dead;
-     size_t   start_time;
+    size_t   start_time;
     pthread_mutex_t died;
     pthread_mutex_t *forks;
     t_philo *philo;

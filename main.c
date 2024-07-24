@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:34:49 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/22 01:29:03 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/23 01:15:12 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int monitor(t_data *data)
        {
             if(check_philo_die(&data->philo[i]) < 0)
             {
-                printf("%lu philo %d died \n",get_time()-data->start_time,data->philo[i].id_philo);
+                printf("%lu philosopher %d died \n",get_time()-data->start_time,data->philo[i].id_philo);
                 pthread_mutex_lock(&data->died);
                 data->dead = 1;
                 pthread_mutex_unlock(&data->died);
