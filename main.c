@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:34:49 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/23 01:15:12 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:30:53 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int monitor(t_data *data)
             i++;
        } 
     }
+    return 0;
 }
 void	join_threads(t_data *data)
 {
@@ -140,6 +141,8 @@ void	join_threads(t_data *data)
         pthread_join(data->philo[i].thread, NULL) ;
         i++;
     }
+    return ;
+ 
 }
 
 int main(int ac,char **av)
@@ -154,10 +157,6 @@ int main(int ac,char **av)
     creat_threads(&data);
     monitor(&data);
     join_threads(&data);
-    
-    // while(0)
-    // {
-    //     printf("hiii\n");
-    // }
+    return 0;
     
 }
