@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 01:18:22 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/25 12:54:49 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/26 21:47:12 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int  eating(t_philo *philo)
     if(philo->data->dead == 1)
         return 0;
     pthread_mutex_lock(philo->r_fork);
+    if(philo->data->dead == 1)
+        return 0;
      printf("%lu philosopher %d has taken a fork\n",get_time()-philo->data->start_time,philo->id_philo);
     if(philo->data->dead == 1  || philo->data->num_philo == 1)
     {

@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:34:49 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/25 11:30:53 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/26 22:35:07 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void init_threads(t_data *data,int ac,char **av)
         data->philo[i].time_die = ft_atoi(av[2]);
         data->philo[i].time_eat= ft_atoi(av[3]);
         data->philo[i].time_sleep= ft_atoi(av[4]);
+        if(ac == 6)
+            data->philo[i].number_eat = ft_atoi(av[5]);
         data->philo[i].dead = &data->dead;
         data->philo[i].data = data;
         // data->philo[i].last_time_eat = 0;
