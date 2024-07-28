@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 01:18:22 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/26 21:47:12 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/28 00:45:55 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void ft_usleep(size_t milliseconds)
 }
 int  eating(t_philo *philo)
 {
+    int i = 0;
     if(philo->data->dead == 1)
         return 0;
     pthread_mutex_lock(philo->r_fork);
@@ -71,7 +72,11 @@ int  eating(t_philo *philo)
         return 0;
     }
     philo->last_time_eat = get_time();
-    ft_usleep(philo->time_eat);
+    while(i < philo->number_eat)
+    {
+        ft_usleep(philo->time_eat);
+        i++;
+    }
     if(philo->data->dead == 1)
     {
         pthread_mutex_unlock(philo->r_fork);
