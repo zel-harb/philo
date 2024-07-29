@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 01:18:22 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/28 00:45:55 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/29 02:56:16 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int  eating(t_philo *philo)
         pthread_mutex_unlock(philo->l_fork);
         return 0;
     }
-    
     printf("%lu philosopher %d is eating\n",get_time()-philo->data->start_time,philo->id_philo);
       if(philo->data->dead == 1)
     {
@@ -72,11 +71,15 @@ int  eating(t_philo *philo)
         return 0;
     }
     philo->last_time_eat = get_time();
-    while(i < philo->number_eat)
+    philo->counter++;
+    if(philo->counter >= philo->number_eat && philo->number_eat != -1)
     {
-        ft_usleep(philo->time_eat);
-        i++;
+        pthread_mutex_lock(&philo->data->full_mutex);
+        philo->data->full++;
+        pthread_mutex_unlock(&philo->data->full_mutex);
     }
+    ft_usleep(philo->time_eat);
+   
     if(philo->data->dead == 1)
     {
         pthread_mutex_unlock(philo->r_fork);
@@ -118,6 +121,8 @@ void *routin(void *arg)
 
     while(1)
     {  
+       if ( (philo->counter >= philo->number_eat && philo->number_eat != -1))
+            return (NULL);
        if( eating(philo) == 0)
             return NULL;
         if(sleeping(philo) == 0)

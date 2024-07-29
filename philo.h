@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:34:41 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/26 22:23:38 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/07/29 01:49:15 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_philo
    int     time_die;
    int     time_sleep;
    int     number_eat;
+   int      counter;
    int      *dead;
    int      last_time_eat;
    pthread_mutex_t last_ate_mutex;
@@ -53,9 +54,11 @@ typedef struct s_data
 {
     int     num_philo;
     int     dead;
+    int     full;
     size_t   start_time;
     pthread_mutex_t died;
     pthread_mutex_t *forks;
+    pthread_mutex_t full_mutex;
     t_philo *philo;
     
 } t_data;     
