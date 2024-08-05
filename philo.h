@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:34:41 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/29 01:49:15 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/08/04 01:32:10 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_data
     pthread_mutex_t died;
     pthread_mutex_t *forks;
     pthread_mutex_t full_mutex;
+    pthread_mutex_t print_eat;
     t_philo *philo;
     
 } t_data;     

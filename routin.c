@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 01:18:22 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/29 02:56:16 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/08/04 01:28:35 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int  eating(t_philo *philo)
     if(philo->data->dead == 1)
         return 0;
     pthread_mutex_lock(philo->r_fork);
-    if(philo->data->dead == 1)
-        return 0;
-     printf("%lu philosopher %d has taken a fork\n",get_time()-philo->data->start_time,philo->id_philo);
+    // if(philo->data->dead == 1)
+    //     return 0;
+    printf("%lu philosopher %d has taken a fork\n",get_time()-philo->data->start_time,philo->id_philo);
     if(philo->data->dead == 1  || philo->data->num_philo == 1)
     {
         pthread_mutex_unlock(philo->r_fork);
@@ -63,21 +63,25 @@ int  eating(t_philo *philo)
         pthread_mutex_unlock(philo->l_fork);
         return 0;
     }
+    // pthread_mutex_lock(&philo->data->print_eat);
     printf("%lu philosopher %d is eating\n",get_time()-philo->data->start_time,philo->id_philo);
-      if(philo->data->dead == 1)
-    {
-        pthread_mutex_unlock(philo->r_fork);
-        pthread_mutex_unlock(philo->l_fork);
-        return 0;
-    }
+     philo->counter++;
+    // pthread_mutex_unlock(&philo->data->print_eat);
+    
+    //   if(philo->data->dead == 1)
+    // {
+    //     pthread_mutex_unlock(philo->r_fork);
+    //     pthread_mutex_unlock(philo->l_fork);
+    //     return 0;
+    // }
     philo->last_time_eat = get_time();
-    philo->counter++;
-    if(philo->counter >= philo->number_eat && philo->number_eat != -1)
-    {
-        pthread_mutex_lock(&philo->data->full_mutex);
-        philo->data->full++;
-        pthread_mutex_unlock(&philo->data->full_mutex);
-    }
+    // philo->counter++;
+    // if(philo->counter >= philo->number_eat && philo->number_eat != -1)
+    // {
+    //     pthread_mutex_lock(&philo->data->full_mutex);
+    //     philo->data->full++;
+    //     pthread_mutex_unlock(&philo->data->full_mutex);
+    // }
     ft_usleep(philo->time_eat);
    
     if(philo->data->dead == 1)

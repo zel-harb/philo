@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:34:49 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/29 04:56:03 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/08/04 02:32:59 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void init_forks(t_data *data)
     }
     pthread_mutex_init(&data->died,NULL);
     pthread_mutex_init(&data->full_mutex,NULL);
+     pthread_mutex_init(&data->print_eat,NULL);
+    
     
 }
 
@@ -119,25 +121,35 @@ int check_philo_die(t_philo * philo)
 int monitor(t_data *data)
 {
     int i;
+    // int full;
+    // full = 0;
     
     while(1)
     {
        i = 0;
        while (i < data->num_philo)
        {
-            // pthread_mutex_lock(&data->full_mutex);
-            // // printf("full %d\n", data->full);
-            // if(data->full >= data->philo[i].number_eat && data->philo[i].number_eat != -1)
-            // {
-            //     printf("i am here\n");
-            //     pthread_mutex_unlock(&data->full_mutex);
-            //      pthread_mutex_lock(&data->died);
-            //     data->dead = 1; 
-            //     pthread_mutex_unlock(&data->died);
-            //     return (1);
-                
-            // }
-             pthread_mutex_unlock(&data->full_mutex);
+           pthread_mutex_lock(&data->full_mutex);
+            // printf("full %d\n", data->full);
+            if(data->philo[i].counter== data->philo[i].number_eat )
+            {
+                pthread_mutex_unlock(&data->full_mutex);
+                    data->full++;
+                printf("counter %d fuuuul %d\n", data->philo[i].counter, data->full);
+                //  pthread_mutex_lock(&data->died);
+                 if(data->full == data->num_philo)
+                 {
+                    printf("hiii %d",data->full);
+                    // pthread_mutex_unlock(&data->full_mutex);
+                    // printf("full %d\n", full);
+                    pthread_mutex_lock(&data->died);
+                    data->dead = 1; 
+                    pthread_mutex_unlock(&data->died);
+                    return (1);
+                 }
+                //  pthread_mutex_unlock(&data->full_mutex);
+            }
+            pthread_mutex_unlock(&data->full_mutex);
             if(check_philo_die(&data->philo[i]) < 0)
             {
                 printf("%lu philosopher %d died \n",get_time()-data->start_time,data->philo[i].id_philo);
@@ -147,10 +159,10 @@ int monitor(t_data *data)
                 return(1);
             }
             i++;
-       } 
-    }
-    return 0;
+        }
+    } 
 }
+
 void	join_threads(t_data *data)
 {
     int i;
@@ -178,5 +190,4 @@ int main(int ac,char **av)
     monitor(&data);
     join_threads(&data);
     return 0;
-    
 }
