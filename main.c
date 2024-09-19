@@ -49,7 +49,7 @@ void init_forks(t_data *data)
     }
     pthread_mutex_init(&data->died,NULL);
     pthread_mutex_init(&data->full_mutex,NULL);
-     pthread_mutex_init(&data->print_eat,NULL);
+    pthread_mutex_init(&data->print_eat,NULL);
     
     
 }
@@ -68,10 +68,9 @@ void get_forks(t_data *data)
         else
         {
             data->philo[i].r_fork= &data->forks[i];
-            data->philo[i].l_fork = &data->forks[i +1];
+            data->philo[i].l_fork = &data->forks[i + 1];
         }
-        i ++;
-        
+        i++;
     } 
 }
 
@@ -89,25 +88,9 @@ void creat_threads(t_data *data)
         pthread_create(&data->philo[i].thread,NULL,&routin,&data->philo[i]);
         i++;
     }
-    // while(j < data->num_philo)
-    // {
-       
-    //     if(get_time() - *data->philo[j].dead > data->philo[j].time_die)
-    //         *data->philo[j].dead = 1;
-    //         j++;
-    //      if(j == data->num_philo)
-    //         j =0;
-    //      //  break;
 
-
-    // } 
-    // i = 0;
-    // while(i < data->num_philo)
-    // {
-    //     pthread_join(data->philo[i].thread, NULL) ;
-    //     i++;
-    // }
 }
+
 int check_philo_die(t_philo * philo)
 {
     size_t time_to_die;
@@ -129,27 +112,6 @@ int monitor(t_data *data)
        i = 0;
        while (i < data->num_philo)
        {
-           pthread_mutex_lock(&data->full_mutex);
-            // printf("full %d\n", data->full);
-            if(data->philo[i].counter== data->philo[i].number_eat )
-            {
-                pthread_mutex_unlock(&data->full_mutex);
-                    data->full++;
-                printf("counter %d fuuuul %d\n", data->philo[i].counter, data->full);
-                //  pthread_mutex_lock(&data->died);
-                 if(data->full == data->num_philo)
-                 {
-                    printf("hiii %d",data->full);
-                    // pthread_mutex_unlock(&data->full_mutex);
-                    // printf("full %d\n", full);
-                    pthread_mutex_lock(&data->died);
-                    data->dead = 1; 
-                    pthread_mutex_unlock(&data->died);
-                    return (1);
-                 }
-                //  pthread_mutex_unlock(&data->full_mutex);
-            }
-            pthread_mutex_unlock(&data->full_mutex);
             if(check_philo_die(&data->philo[i]) < 0)
             {
                 printf("%lu philosopher %d died \n",get_time()-data->start_time,data->philo[i].id_philo);

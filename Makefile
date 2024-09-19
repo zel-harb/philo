@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = cc
-FLAGS = -Wall -Wextra -Werror  #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror  -fsanitize=thread -g3 
 NAME =philo
 SRC = main.c \
 	check_input.c \

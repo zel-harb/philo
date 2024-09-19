@@ -32,58 +32,43 @@ void ft_usleep(size_t milliseconds)
     while ((get_time() - start) < milliseconds)
 		usleep(500);
 }
+
 int  eating(t_philo *philo)
 {
     int i = 0;
+
     if(philo->data->dead == 1)
         return 0;
     pthread_mutex_lock(philo->r_fork);
-    // if(philo->data->dead == 1)
-    //     return 0;
-    printf("%lu philosopher %d has taken a fork\n",get_time()-philo->data->start_time,philo->id_philo);
-    if(philo->data->dead == 1  || philo->data->num_philo == 1)
+    if(philo->data->dead == 1)
     {
         pthread_mutex_unlock(philo->r_fork);
-        // pthread_mutex_unlock(philo->l_fork);
         return 0;
     }
-   
+    printf("%lu philosopher %d has taken a fork\n",(get_time()-philo->data->start_time),philo->id_philo);
+    if(philo->data->dead == 1)
+    {
+        pthread_mutex_unlock(philo->r_fork);
+        return 0;
+    }
     pthread_mutex_lock(philo->l_fork);
-     if(philo->data->dead == 1)
+    if(philo->data->dead == 1 )
     {
-       // pthread_mutex_unlock(philo->r_fork);
         pthread_mutex_unlock(philo->l_fork);
+        pthread_mutex_unlock(philo->r_fork);
         return 0;
     }
-
-     printf("%lu philosopher %d has taken a fork\n",get_time()-philo->data->start_time,philo->id_philo);\
-        if(philo->data->dead == 1)
+    printf("%lu philosopher %d has taken a fork\n",get_time()-(philo->data->start_time),philo->id_philo);
+    if(philo->data->dead == 1)
     {
         pthread_mutex_unlock(philo->r_fork);
         pthread_mutex_unlock(philo->l_fork);
         return 0;
     }
-    // pthread_mutex_lock(&philo->data->print_eat);
-    printf("%lu philosopher %d is eating\n",get_time()-philo->data->start_time,philo->id_philo);
-     philo->counter++;
-    // pthread_mutex_unlock(&philo->data->print_eat);
-    
-    //   if(philo->data->dead == 1)
-    // {
-    //     pthread_mutex_unlock(philo->r_fork);
-    //     pthread_mutex_unlock(philo->l_fork);
-    //     return 0;
-    // }
+    printf("%lu philosopher %d is eating\n",get_time()-(philo->data->start_time),philo->id_philo);
+    philo->counter++;
     philo->last_time_eat = get_time();
-    // philo->counter++;
-    // if(philo->counter >= philo->number_eat && philo->number_eat != -1)
-    // {
-    //     pthread_mutex_lock(&philo->data->full_mutex);
-    //     philo->data->full++;
-    //     pthread_mutex_unlock(&philo->data->full_mutex);
-    // }
     ft_usleep(philo->time_eat);
-   
     if(philo->data->dead == 1)
     {
         pthread_mutex_unlock(philo->r_fork);
@@ -99,43 +84,39 @@ int  sleeping(t_philo *philo )
 {
     if(philo->data->dead == 1)
         return 0;
-    printf("%lu philosopher %d is sleeping\n",get_time()-philo->data->start_time,philo->id_philo);
+    printf("%lu philosopher %d is sleeping\n",get_time()-(philo->data->start_time),philo->id_philo);
     ft_usleep(philo->time_sleep);
-     if(philo->data->dead == 1)
+    if(philo->data->dead == 1)
         return 0;
     return (1);
 }
+
 int thinking(t_philo *philo)
 {
     if(philo->data->dead == 1)
         return 0;
-        //ft_usleep(1);
-     printf("%lu philosopher %d is thinking\n",
-     get_time()-philo->data->start_time,philo->id_philo);
-     if(philo->data->dead == 1)
+    printf("%lu philosopher %d is thinking\n",
+    get_time()-philo->data->start_time,philo->id_philo);
+    if(philo->data->dead == 1)
         return 0;
     return 1;
 }
+
 void *routin(void *arg)
 {
     t_philo *philo;
     philo = (t_philo *)arg;
-    if((philo->id_philo - 1) % 2 != 0 )
-        ft_usleep(1);
 
+    if (philo->id_philo % 2 == 0)
+        ft_usleep(philo->time_eat / 2);
     while(1)
     {  
-       if ( (philo->counter >= philo->number_eat && philo->number_eat != -1))
-            return (NULL);
-       if( eating(philo) == 0)
+       if (eating(philo) == 0)
             return NULL;
-        if(sleeping(philo) == 0)
+        if (sleeping(philo) == 0)
             return NULL;
-        if(thinking(philo) == 0)
-            return NULL;
-        if(philo->data->dead == 1)
+        if (thinking(philo) == 0)
             return NULL;
     }
-    
     return NULL;
 }
