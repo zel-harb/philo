@@ -36,12 +36,13 @@ typedef struct s_philo
    pthread_t thread;
    int      id_philo;
    int     time_eat;
-   int     time_die;
+   long     time_die;
    int     time_sleep;
    int     number_eat;
    int      counter;
    int      *dead;
-   int      last_time_eat;
+   long      last_time_eat;
+   pthread_mutex_t  meal_stats_mutex;
    pthread_mutex_t last_ate_mutex;
    pthread_mutex_t *r_fork;
    pthread_mutex_t *l_fork;

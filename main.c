@@ -45,13 +45,12 @@ void init_forks(t_data *data)
     while(i < data->num_philo)
     {
         pthread_mutex_init(&data->forks[i],NULL);
+        pthread_mutex_init(&data->philo[i].meal_stats_mutex, NULL);
         i++;
     }
     pthread_mutex_init(&data->died,NULL);
     pthread_mutex_init(&data->full_mutex,NULL);
     pthread_mutex_init(&data->print_eat,NULL);
-    
-    
 }
 
 void get_forks(t_data *data)
@@ -96,8 +95,10 @@ int check_philo_die(t_philo * philo)
     size_t time_to_die;
     size_t last_ate;
     
+    pthread_mutex_lock(&philo->meal_stats_mutex);
     time_to_die = philo->time_die;
     last_ate = get_time() - philo->last_time_eat;
+    pthread_mutex_unlock(&philo->meal_stats_mutex);
     return(time_to_die - last_ate);
 }
 
@@ -114,10 +115,10 @@ int monitor(t_data *data)
        {
             if(check_philo_die(&data->philo[i]) < 0)
             {
-                printf("%lu philosopher %d died \n",get_time()-data->start_time,data->philo[i].id_philo);
                 pthread_mutex_lock(&data->died);
                 data->dead = 1;
                 pthread_mutex_unlock(&data->died);
+                printf("%lu philosopher %d died \n",get_time()-data->start_time,data->philo[i].id_philo);
                 return(1);
             }
             i++;
@@ -142,7 +143,7 @@ void	join_threads(t_data *data)
 int main(int ac,char **av)
 {
     t_data data;
-    pthread_t thread;
+    
     check_arg(ac,av);
     init_threads(&data,ac,av);
     init_forks(&data);

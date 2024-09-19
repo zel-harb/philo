@@ -33,48 +33,54 @@ void ft_usleep(size_t milliseconds)
 		usleep(500);
 }
 
+int end_simulation(t_philo *philo)
+{
+    pthread_mutex_lock(&philo->data->died);
+    if (philo->data->dead == 1)
+    {
+        pthread_mutex_unlock(&philo->data->died);
+        return (1);
+    }
+    pthread_mutex_unlock(&philo->data->died);
+    return (0);
+}
+
 int  eating(t_philo *philo)
 {
-    int i = 0;
-
-    if(philo->data->dead == 1)
-        return 0;
+    if (end_simulation(philo) == 1)
+        return (0);
     pthread_mutex_lock(philo->r_fork);
-    if(philo->data->dead == 1)
+    if (end_simulation(philo) == 1)
     {
         pthread_mutex_unlock(philo->r_fork);
         return 0;
     }
     printf("%lu philosopher %d has taken a fork\n",(get_time()-philo->data->start_time),philo->id_philo);
-    if(philo->data->dead == 1)
+    if (end_simulation(philo) == 1)
     {
         pthread_mutex_unlock(philo->r_fork);
         return 0;
     }
     pthread_mutex_lock(philo->l_fork);
-    if(philo->data->dead == 1 )
+    if (end_simulation(philo) == 1)
     {
         pthread_mutex_unlock(philo->l_fork);
         pthread_mutex_unlock(philo->r_fork);
         return 0;
     }
     printf("%lu philosopher %d has taken a fork\n",get_time()-(philo->data->start_time),philo->id_philo);
-    if(philo->data->dead == 1)
+    if (end_simulation(philo) == 1)
     {
         pthread_mutex_unlock(philo->r_fork);
         pthread_mutex_unlock(philo->l_fork);
         return 0;
     }
     printf("%lu philosopher %d is eating\n",get_time()-(philo->data->start_time),philo->id_philo);
+    pthread_mutex_lock(&philo->meal_stats_mutex);
     philo->counter++;
     philo->last_time_eat = get_time();
+    pthread_mutex_unlock(&philo->meal_stats_mutex);
     ft_usleep(philo->time_eat);
-    if(philo->data->dead == 1)
-    {
-        pthread_mutex_unlock(philo->r_fork);
-        pthread_mutex_unlock(philo->l_fork);
-        return 0;
-    }
     pthread_mutex_unlock(philo->r_fork);
     pthread_mutex_unlock(philo->l_fork);
     return 1;
@@ -82,23 +88,19 @@ int  eating(t_philo *philo)
 }
 int  sleeping(t_philo *philo )
 {
-    if(philo->data->dead == 1)
+    if (end_simulation(philo) == 1)
         return 0;
     printf("%lu philosopher %d is sleeping\n",get_time()-(philo->data->start_time),philo->id_philo);
     ft_usleep(philo->time_sleep);
-    if(philo->data->dead == 1)
-        return 0;
     return (1);
 }
 
 int thinking(t_philo *philo)
 {
-    if(philo->data->dead == 1)
+    if (end_simulation(philo) == 1)
         return 0;
     printf("%lu philosopher %d is thinking\n",
-    get_time()-philo->data->start_time,philo->id_philo);
-    if(philo->data->dead == 1)
-        return 0;
+    get_time() - philo->data->start_time,philo->id_philo);
     return 1;
 }
 
@@ -117,6 +119,7 @@ void *routin(void *arg)
             return NULL;
         if (thinking(philo) == 0)
             return NULL;
+        ft_usleep((philo->time_die - (get_time() - philo->last_time_eat)) / 2);
     }
     return NULL;
 }
