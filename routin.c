@@ -77,7 +77,13 @@ int  eating(t_philo *philo)
     }
     printf("%lu philosopher %d is eating\n",get_time()-(philo->data->start_time),philo->id_philo);
     pthread_mutex_lock(&philo->meal_stats_mutex);
-    philo->counter++;
+    // printf("******%d \n");
+    if(philo->data->number_eat != -1)
+    {
+        pthread_mutex_lock(&philo->check_counter);
+        philo->counter++;
+        pthread_mutex_unlock(&philo->check_counter);
+    }
     philo->last_time_eat = get_time();
     pthread_mutex_unlock(&philo->meal_stats_mutex);
     ft_usleep(philo->time_eat);

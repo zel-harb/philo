@@ -42,7 +42,9 @@ typedef struct s_philo
    int      counter;
    int      *dead;
    long      last_time_eat;
+   int       check;
    pthread_mutex_t  meal_stats_mutex;
+   pthread_mutex_t check_counter;
    pthread_mutex_t last_ate_mutex;
    pthread_mutex_t *r_fork;
    pthread_mutex_t *l_fork;
@@ -56,6 +58,7 @@ typedef struct s_data
     int     num_philo;
     int     dead;
     int     full;
+     int     number_eat;;
     size_t   start_time;
     pthread_mutex_t died;
     pthread_mutex_t *forks;
