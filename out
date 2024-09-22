@@ -1,292 +1,135 @@
-1 philosopher 1 has taken a fork
-1 philosopher 1 has taken a fork
-1 philosopher 1 is eating
+0 philosopher 1 has taken a fork
+0 philosopher 1 has taken a fork
+0 philosopher 1 is eating
 1 philosopher 3 has taken a fork
 1 philosopher 3 has taken a fork
 1 philosopher 3 is eating
-2 philosopher 5 has taken a fork
-2 philosopher 5 has taken a fork
-2 philosopher 5 is eating
-201 philosopher 1 is sleeping
-201 philosopher 6 has taken a fork
-201 philosopher 2 has taken a fork
+200 philosopher 1 is sleeping
+200 philosopher 4 has taken a fork
+200 philosopher 2 has taken a fork
 201 philosopher 3 is sleeping
 201 philosopher 2 has taken a fork
 201 philosopher 2 is eating
 201 philosopher 4 has taken a fork
-202 philosopher 5 is sleeping
-202 philosopher 6 has taken a fork
-202 philosopher 6 is eating
-202 philosopher 4 has taken a fork
-202 philosopher 4 is eating
-401 philosopher 2 is sleeping
+201 philosopher 4 is eating
+400 philosopher 1 is thinking
+401 philosopher 4 is sleeping
 401 philosopher 3 is thinking
-401 philosopher 1 is thinking
-402 philosopher 6 is sleeping
-402 philosopher 4 is sleeping
-402 philosopher 5 is thinking
-601 philosopher 3 has taken a fork
-601 philosopher 3 has taken a fork
-601 philosopher 3 is eating
+401 philosopher 2 is sleeping
+405 philosopher 1 has taken a fork
+405 philosopher 1 has taken a fork
+405 philosopher 1 is eating
+406 philosopher 3 has taken a fork
+406 philosopher 3 has taken a fork
+406 philosopher 3 is eating
+601 philosopher 4 is thinking
 601 philosopher 2 is thinking
-601 philosopher 1 has taken a fork
-601 philosopher 1 has taken a fork
-601 philosopher 1 is eating
-602 philosopher 5 has taken a fork
-602 philosopher 5 has taken a fork
-602 philosopher 5 is eating
-602 philosopher 4 is thinking
-602 philosopher 6 is thinking
-801 philosopher 3 is sleeping
-801 philosopher 1 is sleeping
-801 philosopher 2 has taken a fork
-801 philosopher 2 has taken a fork
-801 philosopher 2 is eating
-802 philosopher 6 has taken a fork
-802 philosopher 6 has taken a fork
-802 philosopher 6 is eating
-802 philosopher 5 is sleeping
-802 philosopher 4 has taken a fork
-802 philosopher 4 has taken a fork
-802 philosopher 4 is eating
-1001 philosopher 3 is thinking
-1001 philosopher 1 is thinking
-1001 philosopher 2 is sleeping
-1002 philosopher 5 is thinking
-1002 philosopher 4 is sleeping
-1002 philosopher 6 is sleeping
-1201 philosopher 2 is thinking
-1201 philosopher 3 has taken a fork
-1201 philosopher 3 has taken a fork
-1201 philosopher 3 is eating
-1201 philosopher 1 has taken a fork
-1201 philosopher 1 has taken a fork
-1201 philosopher 1 is eating
-1202 philosopher 4 is thinking
-1202 philosopher 6 is thinking
-1202 philosopher 5 has taken a fork
-1202 philosopher 5 has taken a fork
-1202 philosopher 5 is eating
-1401 philosopher 3 is sleeping
-1401 philosopher 2 has taken a fork
-1401 philosopher 2 has taken a fork
-1401 philosopher 2 is eating
-1401 philosopher 1 is sleeping
-1402 philosopher 5 is sleeping
-1402 philosopher 6 has taken a fork
-1402 philosopher 6 has taken a fork
-1402 philosopher 6 is eating
-1402 philosopher 4 has taken a fork
-1402 philosopher 4 has taken a fork
-1402 philosopher 4 is eating
-1601 philosopher 3 is thinking
-1601 philosopher 2 is sleeping
-1601 philosopher 1 is thinking
-1602 philosopher 6 is sleeping
-1602 philosopher 4 is sleeping
-1602 philosopher 5 is thinking
-1801 philosopher 2 is thinking
-1801 philosopher 3 has taken a fork
-1801 philosopher 3 has taken a fork
-1801 philosopher 3 is eating
-1801 philosopher 1 has taken a fork
-1801 philosopher 1 has taken a fork
-1801 philosopher 1 is eating
-1802 philosopher 5 has taken a fork
-1802 philosopher 5 has taken a fork
-1802 philosopher 5 is eating
-1802 philosopher 6 is thinking
-1802 philosopher 4 is thinking
-2001 philosopher 3 is sleeping
-2001 philosopher 2 has taken a fork
-2001 philosopher 1 is sleeping
-2001 philosopher 2 has taken a fork
-2001 philosopher 2 is eating
-2002 philosopher 6 has taken a fork
-2002 philosopher 5 is sleeping
-2002 philosopher 6 has taken a fork
-2002 philosopher 6 is eating
-2002 philosopher 4 has taken a fork
-2002 philosopher 4 has taken a fork
-2002 philosopher 4 is eating
-2201 philosopher 3 is thinking
-2201 philosopher 2 is sleeping
-2201 philosopher 1 is thinking
-2202 philosopher 4 is sleeping
-2202 philosopher 5 is thinking
-2202 philosopher 6 is sleeping
-2401 philosopher 2 is thinking
-2401 philosopher 1 has taken a fork
-2401 philosopher 1 has taken a fork
-2401 philosopher 1 is eating
-2401 philosopher 3 has taken a fork
-2401 philosopher 3 has taken a fork
-2401 philosopher 3 is eating
-2402 philosopher 5 has taken a fork
-2402 philosopher 5 has taken a fork
-2402 philosopher 5 is eating
-2402 philosopher 6 is thinking
-2402 philosopher 4 is thinking
-2601 philosopher 3 is sleeping
-2601 philosopher 1 is sleeping
-2601 philosopher 2 has taken a fork
-2601 philosopher 2 has taken a fork
-2601 philosopher 2 is eating
-2602 philosopher 4 has taken a fork
-2602 philosopher 6 has taken a fork
-2602 philosopher 6 has taken a fork
-2602 philosopher 6 is eating
-2602 philosopher 5 is sleeping
-2602 philosopher 4 has taken a fork
-2602 philosopher 4 is eating
-2801 philosopher 3 is thinking
-2801 philosopher 2 is sleeping
-2801 philosopher 1 is thinking
-2802 philosopher 4 is sleeping
-2802 philosopher 5 is thinking
-2802 philosopher 6 is sleeping
-3001 philosopher 2 is thinking
-3001 philosopher 1 has taken a fork
-3001 philosopher 1 has taken a fork
-3001 philosopher 3 has taken a fork
-3001 philosopher 1 is eating
-3001 philosopher 3 has taken a fork
-3001 philosopher 3 is eating
-3002 philosopher 5 has taken a fork
-3002 philosopher 5 has taken a fork
-3002 philosopher 5 is eating
-3002 philosopher 4 is thinking
-3002 philosopher 6 is thinking
-3201 philosopher 1 is sleeping
-3201 philosopher 3 is sleeping
-3201 philosopher 2 has taken a fork
-3201 philosopher 2 has taken a fork
-3201 philosopher 2 is eating
-3202 philosopher 4 has taken a fork
-3202 philosopher 6 has taken a fork
-3202 philosopher 6 has taken a fork
-3202 philosopher 6 is eating
-3202 philosopher 5 is sleeping
-3202 philosopher 4 has taken a fork
-3202 philosopher 4 is eating
-3401 philosopher 3 is thinking
-3401 philosopher 1 is thinking
-3401 philosopher 2 is sleeping
-3402 philosopher 5 is thinking
-3402 philosopher 4 is sleeping
-3402 philosopher 6 is sleeping
-3601 philosopher 2 is thinking
-3601 philosopher 1 has taken a fork
-3601 philosopher 1 has taken a fork
-3601 philosopher 1 is eating
-3601 philosopher 3 has taken a fork
-3601 philosopher 3 has taken a fork
-3601 philosopher 3 is eating
-3602 philosopher 4 is thinking
-3602 philosopher 6 is thinking
-3602 philosopher 5 has taken a fork
-3602 philosopher 5 has taken a fork
-3602 philosopher 5 is eating
-3801 philosopher 1 is sleeping
-3801 philosopher 3 is sleeping
-3801 philosopher 2 has taken a fork
-3801 philosopher 2 has taken a fork
-3801 philosopher 2 is eating
-3802 philosopher 4 has taken a fork
-3802 philosopher 6 has taken a fork
-3802 philosopher 5 is sleeping
-3802 philosopher 4 has taken a fork
-3802 philosopher 4 is eating
-3802 philosopher 6 has taken a fork
-3802 philosopher 6 is eating
-4001 philosopher 2 is sleeping
-4001 philosopher 3 is thinking
-4001 philosopher 1 is thinking
-4002 philosopher 6 is sleeping
-4002 philosopher 4 is sleeping
-4002 philosopher 5 is thinking
-4201 philosopher 3 has taken a fork
-4201 philosopher 1 has taken a fork
-4201 philosopher 3 has taken a fork
-4201 philosopher 3 is eating
-4201 philosopher 1 has taken a fork
-4201 philosopher 1 is eating
-4201 philosopher 2 is thinking
-4202 philosopher 4 is thinking
-4202 philosopher 6 is thinking
-4202 philosopher 5 has taken a fork
-4202 philosopher 5 has taken a fork
-4202 philosopher 5 is eating
-4401 philosopher 3 is sleeping
-4401 philosopher 1 is sleeping
-4401 philosopher 2 has taken a fork
-4401 philosopher 2 has taken a fork
-4401 philosopher 2 is eating
-4402 philosopher 6 has taken a fork
-4402 philosopher 6 has taken a fork
-4402 philosopher 4 has taken a fork
-4402 philosopher 5 is sleeping
-4402 philosopher 6 is eating
-4402 philosopher 4 has taken a fork
-4402 philosopher 4 is eating
-4601 philosopher 1 is thinking
-4601 philosopher 3 is thinking
-4601 philosopher 2 is sleeping
-4602 philosopher 6 is sleeping
-4602 philosopher 5 is thinking
-4602 philosopher 4 is sleeping
-4801 philosopher 1 has taken a fork
-4801 philosopher 1 has taken a fork
-4801 philosopher 1 is eating
-4801 philosopher 2 is thinking
-4801 philosopher 3 has taken a fork
-4801 philosopher 3 has taken a fork
-4801 philosopher 3 is eating
-4802 philosopher 6 is thinking
-4802 philosopher 5 has taken a fork
-4802 philosopher 4 is thinking
-4802 philosopher 5 has taken a fork
-4802 philosopher 5 is eating
-5001 philosopher 3 is sleeping
-5001 philosopher 2 has taken a fork
-5001 philosopher 1 is sleeping
-5001 philosopher 2 has taken a fork
-5001 philosopher 2 is eating
-5002 philosopher 5 is sleeping
-5002 philosopher 6 has taken a fork
-5002 philosopher 6 has taken a fork
-5002 philosopher 6 is eating
-5002 philosopher 4 has taken a fork
-5002 philosopher 4 has taken a fork
-5002 philosopher 4 is eating
-5201 philosopher 2 is sleeping
-5201 philosopher 3 is thinking
-5201 philosopher 1 is thinking
-5202 philosopher 6 is sleeping
-5202 philosopher 4 is sleeping
-5202 philosopher 5 is thinking
-5401 philosopher 3 has taken a fork
-5401 philosopher 3 has taken a fork
-5401 philosopher 3 is eating
-5401 philosopher 2 is thinking
-5401 philosopher 1 has taken a fork
-5401 philosopher 1 has taken a fork
-5401 philosopher 1 is eating
-5402 philosopher 4 is thinking
-5402 philosopher 5 has taken a fork
-5402 philosopher 5 has taken a fork
-5402 philosopher 5 is eating
-5402 philosopher 6 is thinking
-5601 philosopher 2 has taken a fork
-5601 philosopher 1 is sleeping
-5601 philosopher 2 has taken a fork
-5601 philosopher 2 is eating
-5601 philosopher 3 is sleeping
-5602 philosopher 4 has taken a fork
-5602 philosopher 4 has taken a fork
-5602 philosopher 5 is sleeping
-5602 philosopher 4 is eating
-5602 philosopher 6 has taken a fork
-5602 philosopher 6 has taken a fork
-5602 philosopher 6 is eating
-5602 philosopher2 6 died 
+605 philosopher 1 is sleeping
+606 philosopher 3 is sleeping
+606 philosopher 4 has taken a fork
+606 philosopher 4 has taken a fork
+606 philosopher 4 is eating
+606 philosopher 2 has taken a fork
+606 philosopher 2 has taken a fork
+606 philosopher 2 is eating
+805 philosopher 1 is thinking
+806 philosopher 3 is thinking
+806 philosopher 4 is sleeping
+806 philosopher 2 is sleeping
+810 philosopher 1 has taken a fork
+810 philosopher 1 has taken a fork
+810 philosopher 1 is eating
+811 philosopher 3 has taken a fork
+811 philosopher 3 has taken a fork
+811 philosopher 3 is eating
+1006 philosopher 2 is thinking
+1006 philosopher 4 is thinking
+1010 philosopher 1 is sleeping
+1011 philosopher 3 is sleeping
+1011 philosopher 2 has taken a fork
+1011 philosopher 2 has taken a fork
+1011 philosopher 2 is eating
+1011 philosopher 4 has taken a fork
+1011 philosopher 4 has taken a fork
+1011 philosopher 4 is eating
+1210 philosopher 1 is thinking
+1211 philosopher 2 is sleeping
+1211 philosopher 4 is sleeping
+1211 philosopher 3 is thinking
+1215 philosopher 1 has taken a fork
+1215 philosopher 1 has taken a fork
+1215 philosopher 1 is eating
+1216 philosopher 3 has taken a fork
+1216 philosopher 3 has taken a fork
+1216 philosopher 3 is eating
+1411 philosopher 4 is thinking
+1411 philosopher 2 is thinking
+1415 philosopher 1 is sleeping
+1416 philosopher 3 is sleeping
+1416 philosopher 4 has taken a fork
+1416 philosopher 4 has taken a fork
+1416 philosopher 4 is eating
+1416 philosopher 2 has taken a fork
+1416 philosopher 2 has taken a fork
+1416 philosopher 2 is eating
+1615 philosopher 1 is thinking
+1616 philosopher 4 is sleeping
+1616 philosopher 2 is sleeping
+1616 philosopher 3 is thinking
+1620 philosopher 1 has taken a fork
+1620 philosopher 1 has taken a fork
+1620 philosopher 1 is eating
+1621 philosopher 3 has taken a fork
+1621 philosopher 3 has taken a fork
+1621 philosopher 3 is eating
+1816 philosopher 4 is thinking
+1816 philosopher 2 is thinking
+1820 philosopher 1 is sleeping
+1821 philosopher 4 has taken a fork
+1821 philosopher 2 has taken a fork
+1821 philosopher 3 is sleeping
+1821 philosopher 4 has taken a fork
+1821 philosopher 2 has taken a fork
+1821 philosopher 2 is eating
+1821 philosopher 4 is eating
+2020 philosopher 1 is thinking
+2021 philosopher 3 is thinking
+2021 philosopher 4 is sleeping
+2021 philosopher 2 is sleeping
+2025 philosopher 1 has taken a fork
+2025 philosopher 1 has taken a fork
+2025 philosopher 1 is eating
+2026 philosopher 3 has taken a fork
+2026 philosopher 3 has taken a fork
+2026 philosopher 3 is eating
+2221 philosopher 2 is thinking
+2221 philosopher 4 is thinking
+2225 philosopher 1 is sleeping
+2226 philosopher 2 has taken a fork
+2226 philosopher 3 is sleeping
+2226 philosopher 2 has taken a fork
+2226 philosopher 2 is eating
+2226 philosopher 4 has taken a fork
+2226 philosopher 4 has taken a fork
+2226 philosopher 4 is eating
+2425 philosopher 1 is thinking
+2426 philosopher 3 is thinking
+2426 philosopher 4 is sleeping
+2426 philosopher 2 is sleeping
+2430 philosopher 1 has taken a fork
+2430 philosopher 1 has taken a fork
+2430 philosopher 1 is eating
+2431 philosopher 3 has taken a fork
+2431 philosopher 3 has taken a fork
+2431 philosopher 3 is eating
+2626 philosopher 4 is thinking
+2626 philosopher 2 is thinking
+2630 philosopher 1 is sleeping
+2631 philosopher 3 is sleeping
+2631 philosopher 4 has taken a fork
+2631 philosopher 4 has taken a fork
+2631 philosopher 4 is eating
+2631 philosopher 2 has taken a fork
+2631 philosopher 2 has taken a fork
+2631 philosopher 2 is eating
+2631 philosopher 2 died 
