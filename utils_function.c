@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 00:22:36 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/07/16 14:44:43 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/09/22 23:28:58 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,13 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (result * sign);
+}
+
+void	ft_usleep(size_t milliseconds)
+{
+	size_t	start;
+
+	start = get_time();
+	while ((get_time() - start) < milliseconds)
+		usleep(500);
 }

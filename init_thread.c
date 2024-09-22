@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 04:59:34 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/09/21 04:59:35 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/09/22 23:28:10 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	init_threads(t_data *data, int ac, char **av)
 		i++;
 	}
 }
+
 void	init_forks(t_data *data)
 {
 	int	i;

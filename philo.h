@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:34:41 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/09/21 04:55:23 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:16:49 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ void					init_forks(t_data *data);
 void					get_forks(t_data *data);
 void					creat_threads(t_data *data);
 void					join_threads(t_data *data);
+size_t					get_time(void);
+void					ft_usleep(size_t milliseconds);
+int						end_simulation(t_philo *philo);
+void					lock_unlock(pthread_mutex_t *p1, pthread_mutex_t *p2);
+void					print_msg(t_philo *philo, char *str);
+void					counter_increment(t_philo *philo);
 
 typedef struct s_philo
 {
