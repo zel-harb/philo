@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 01:18:22 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/09/23 00:10:46 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:26:13 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	eating(t_philo *philo)
 	if (end_simulation(philo) == 1)
 		return (pthread_mutex_unlock(philo->r_fork), 0);
 	print_msg(philo, "has taken a fork");
-	if (end_simulation(philo) == 1)
+	if (end_simulation(philo) == 1 || philo->data->num_philo == 1)
 		return (pthread_mutex_unlock(philo->r_fork), 0);
 	pthread_mutex_lock(philo->l_fork);
 	if (end_simulation(philo) == 1)
