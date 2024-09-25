@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 04:59:34 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/09/25 00:59:23 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/09/25 02:10:39 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	init_threads(t_data *data, int ac, char **av)
 	i = 0;
 	data->num_philo = ft_atoi(av[1]);
 	data->dead = 0;
-	data->full = 0;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_philo);
 	data->philo = malloc(sizeof(t_philo) * data->num_philo);
 	data->number_eat = -1;
@@ -34,7 +33,6 @@ void	init_threads(t_data *data, int ac, char **av)
 		if (ac == 6)
 			data->number_eat = ft_atoi(av[5]);
 		data->philo[i].counter = 0;
-		data->philo[i].dead = &data->dead;
 		data->philo[i].data = data;
 		i++;
 	}

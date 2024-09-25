@@ -6,29 +6,11 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:59:36 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/09/25 01:27:08 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/09/25 02:08:44 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	one_plus(char *av)
-{
-	int	i;
-	int	flag;
-
-	i = 0;
-	flag = 0;
-	while (av[i])
-	{
-		if (i == 0 && ft_strlen(av) == 1 && av[i] == '+')
-			return (1);
-		else
-			flag++;
-		i++;
-	}
-	return (0);
-}
 
 int	check_is_number(char **av)
 {
