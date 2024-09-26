@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:34:49 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/09/25 01:26:58 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/09/26 20:52:07 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
-	if (check_arg(ac, av))
+	if (check_arg(ac, av) || ft_atoi(av[1]) == 0)
 		return (1);
 	init_threads(&data, ac, av);
-	init_forks(&data);
+	if (init_forks(&data))
+		return (free(data.forks), 1);
 	get_forks(&data);
 	data.start_time = get_time();
-	creat_threads(&data);
+	if (creat_threads(&data))
+		return (ft_destroy_mutex(&data), free(data.forks), free(data.philo), 1);
 	monitor(&data);
 	join_threads(&data);
 	ft_destroy_mutex(&data);

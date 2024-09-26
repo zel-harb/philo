@@ -6,7 +6,7 @@
 /*   By: zel-harb <zel-harb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 00:11:10 by zel-harb          #+#    #+#             */
-/*   Updated: 2024/09/23 00:16:43 by zel-harb         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:00:51 by zel-harb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	lock_unlock(pthread_mutex_t *p1, pthread_mutex_t *p2)
 
 void	print_msg(t_philo *philo, char *str)
 {
-	printf("%lu philosopher %d %s \n", (get_time() - philo->data->start_time),
+	printf("%lu %d %s\n", (get_time() - philo->data->start_time),
 		philo->id_philo, str);
 }
 
